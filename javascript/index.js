@@ -119,4 +119,19 @@ console.log("done")
 makeBroccoli()
 
 // Bonus 2 - Promise all
-// ...
+const brusselsSproutsSteps = async () => {
+  console.log('Start')
+
+  const promises = await brusselsSprouts.map(async step => {
+    const numStep = new Promise((resolve, reject) => {
+      setTimeout(() => resolve(step), 1000)
+    });
+    return numStep
+  })
+  const numStep = await Promise.all(promises)
+  console.log(numStep)
+
+  console.log('End')
+}
+
+brusselsSproutsSteps();
