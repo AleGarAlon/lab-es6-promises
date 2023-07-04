@@ -85,7 +85,7 @@ obtainInstruction('steak', 0)
               
             })
           
-  .catch((error) => console.log(error))
+  .catch(error => console.log(error))
   
   
   
@@ -119,8 +119,8 @@ console.log("done")
 makeBroccoli()
 
 // Bonus 2 - Promise all
-const brusselsSproutsSteps = async () => {
-  console.log('Start')
+/*const brusselsSproutsSteps = async () => {
+  
 
   const promises = await brusselsSprouts.map(async step => {
     const numStep = new Promise((resolve, reject) => {
@@ -130,8 +130,27 @@ const brusselsSproutsSteps = async () => {
   })
   const numStep = await Promise.all(promises)
   console.log(numStep)
-
-  console.log('End')
 }
 
-brusselsSproutsSteps();
+
+
+brusselsSproutsSteps();*/
+
+const brusselStep1 = obtainInstruction('brusselsSprouts', 0);
+const brusselStep2 = obtainInstruction('brusselsSprouts', 1);
+const brusselStep3 = obtainInstruction('brusselsSprouts', 2);
+const brusselStep4 = obtainInstruction('brusselsSprouts', 3);
+const brusselStep5 = obtainInstruction('brusselsSprouts', 4);
+const brusselStep6 = obtainInstruction('brusselsSprouts', 5);
+const brusselStep7 = obtainInstruction('brusselsSprouts', 6);
+const brusselStep8 = obtainInstruction('brusselsSprouts', 7);
+
+Promise.all([brusselStep1,brusselStep2,brusselStep3,brusselStep4,brusselStep5,brusselStep6,brusselStep7,brusselStep8])
+.then((theSteps) => {
+  theSteps.forEach(oneStep => {
+    document.querySelector("#brusselsSprouts").innerHTML += `<li>${oneStep}</li>`;
+  })
+  document.querySelector("#brusselsSprouts").innerHTML += `<li>Brussels Sprouts are ready!</li>`
+  brusselsSproutsImg.style.display = "block"
+})
+.catch(err => console.log('There was a problem in the promise all', err))
